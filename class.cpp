@@ -1,0 +1,24 @@
+# include <iostream>
+# include "class.h"
+using namespace std;
+
+Class::Class(){
+}
+Class::~Class(){
+}
+
+Class::push(){
+}
+
+Class::pop(){
+}
+
+Class::peek(){
+}
+
+Class::enqueue(){
+}
+
+Class::dequeue(){
+}
+

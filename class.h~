@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+class Class{
+  Class();
+  ~Class();
+  //stack
+  push();
+  pop();
+  peek();
+  //queue
+  enqueue();
+  dequeue();
+}
