@@ -2,10 +2,16 @@
 # include "class.h"
 using namespace std;
 
-Class::Class(){
+Class::Class(char c) {
+  num = c;
+  next =NULL;
+  left=NULL;
+  right =NULL;
 }
+
 Class::~Class(){
 }
+
 
 Class::push(){
 }
