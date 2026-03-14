@@ -11,15 +11,15 @@ public:
   Class* next;
   Class* left;
   Class* right;
-  
+  //still need types for everything
   //stack
-  void push();
-  void pop();
-  char peek();
+  /*push();
+  pop();
+  peek();
   //queue
-  void enqueue();
-  void dequeue();
-  char front();//?
+  enqueue();
+  dequeue();
+  */
 };
 
 #endif

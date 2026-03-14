@@ -4,29 +4,28 @@ using namespace std;
 
 Class::Class(char c) {
   num = c;
-  next =NULL;
-  left=NULL;
-  right =NULL;
+  next =NULL; // stack linked list
+  left=NULL; // stack linked list (points to next thing in list)
+  right =NULL; // stack linked list
 }
 
 Class::~Class(){
 }
 
 
-/*
-Class::push(){
+void push(){
 }
 
-Class::pop(){
+void pop(){
 }
 
-Class::peek(){
+char peek(){
+  return '0';
 }
 
-Class::enqueue(){
+void enqueue(){
 }
 
-Class::dequeue(){
+void dequeue(){
 }
 
-*/
