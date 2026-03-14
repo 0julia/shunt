@@ -1,75 +1,32 @@
 #include <iostream>
 #include <cstring>// dunno
-#include "class.h"
+#include "Class.h"
 using namespace std;
 
-
-
-int main(){
-  string fulleqn;
-  char eqn;
-  cout << "Welcome. Please insurt An equasion: ";
-  cin >> fulleqn;
-  for (int i = 0; i < fulleqn.size(); i++){
-    Class* n = new Class(fulleqn[i]);
-  }
-  return 0;
-}
-
-/*
-
-void add(const char newvalue[100], Class* &head);
-void print(Class* next, Class* head);
+char precedence();
 
 int main(){
   Class* head = NULL;
+  string fulleqn;
+  char eqn;
+  cout << "Wellcome. Pleese insurt A equasion: ";
+  cin >> fulleqn;
 
+  for (int i = 0; i < fulleqn.size(); i++){
+    char var=fulleqn[i];
 
-
-
-  
-  //delete s and n from add()
-  Class* next = head;
-  while (next != NULL) {
-    Class* nextNode = next->getNext();
-    delete next->getStudent();
-    delete next;
-    next = nextNode;
+    if (var
+    Class* n = new Class(var);
+    n->next = head;
+    head = n;
   }
-  head = NULL;  // list is now empty
+  
+
+  Class* current = head;
+  for (int i = 0; i < fulleqn.size(); i++){
+    cout << current->num << " ";
+    current = current->next;
+  }
+  
   return 0;
 }
-
-
-
-void add(char newvalue, node* &head){
-  node* next = head;
-  if (next == NULL){//if empty list
-    //student* s = new student();
-    //s->name(newvalue);
-    node* n = new node(s);
-    head = n;
-  } else{ //if theres stuff in the list
-    while (next->getNext() != NULL){
-      next = next->getNext();
-    }
-    
-    student* s = new student();
-    s->name(newvalue);
-    node* n = new node(s);
-    next->setNext(n);
-  }
-}
-
-
-
-void print(node* next, node* head){
-  if(next == head){
-    cout << "list: ";
-  }
-  if(next != NULL){
-    cout << next->getStudent()->name() << " ";
-    print(next->getNext(), head);
-  }
-}
-*/

@@ -13,12 +13,15 @@ public:
   Class* right;
   //still need types for everything
   //stack
-  push();
+  /*push();
   pop();
   peek();
   //queue
   enqueue();
   dequeue();
+  */
 };
 
 #endif
+
+

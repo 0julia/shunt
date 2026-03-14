@@ -1,5 +1,5 @@
 # include <iostream>
-# include "class.h"
+# include "Class.h"
 using namespace std;
 
 Class::Class(char c) {
@@ -13,6 +13,7 @@ Class::~Class(){
 }
 
 
+/*
 Class::push(){
 }
 
@@ -28,3 +29,4 @@ Class::enqueue(){
 Class::dequeue(){
 }
 
+*/
