@@ -13,33 +13,21 @@ int main(){
   char eqn;
   cout << "Wellcome. Pleese insurt A equasion: ";
   cin >> fulleqn;
-
+  //Class* n = new Class(fulleqn[0]);
+  //n->push(n);
   for (int i = 0; i < fulleqn.size(); i++){
     char var=fulleqn[i];
-    //queues everything in
-    /*    Class* n = new Class(var);
-    n->left = lefty;
-    n->right = righty;
-    head = n;
-    */
-    if (var != '*' && var != '/' && var != '+' && var != '-' && var != '(' && var != ')' && var != '^'){
-    //stacks everything in
     Class* n = new Class(var);
-    n->next = head;
-    head = n;
-    } else {
-      bool more = precedence(var, head->num);
-      cout << more;
-    }
-    //    */
+    head = n->push(n, head);
   }
 
-
+  
   Class* current = head;
-  for (int i = 0; i < fulleqn.size(); i++){
+  do{
     cout << current->num << " ";
     current = current->next;
-  }
+  }while (current != NULL);
+  
 
 
   cout<< "!";
@@ -56,3 +44,23 @@ bool precedence(char current, char previous){
   }
   return false;
 }
+  
+    //queues everything in
+    /*    Class* n = new Class(var);
+    n->left = lefty;
+    n->right = righty;
+    head = n;
+    /
+    if (var != '*' && var != '/' && var != '+' && var != '-' && var != '(' && var != ')' && var != '^'){
+    //stacks everything in
+    /*Class* n = new Class(var);
+    n->push(n);
+    /*n->next = head;
+    head = n;
+    /
+    } else {
+      // bool more = precedence(var, head->num);
+      //cout << more;
+    }
+    //    */
+  

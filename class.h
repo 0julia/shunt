@@ -7,13 +7,14 @@ class Class{
 public:
   Class(char c);
   ~Class();
+  Class* head;
   char num;//the eqn thing ur on rn
   Class* next;
   Class* left;
   Class* right;
   
   //stack
-  void push();
+  Class* push(Class* n, Class* head);
   void pop();
   char peek();
   //queue
