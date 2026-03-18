@@ -11,6 +11,7 @@ Class::Class(char c) {
 }
 
 Class::~Class(){
+  //YAY its party timeeeeeeeeeeeeeeeeeee
 }
 
 
@@ -30,6 +31,8 @@ Class* Class::pop(Class* head){
   return temp;
 }
 
+
+//jsut look at the top of stack char
 char Class::peek(Class* head){
   return head->num;
 }

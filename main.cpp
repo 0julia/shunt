@@ -13,7 +13,59 @@ int main(){
   char eqn;
   cout << "Wellcome. Pleese insurt A equasion: ";
   cin >> fulleqn;
+  cout<< " in";
+  for (int i = 0; i < fulleqn.size(); i++){
+    char var=fulleqn[i];
+    Class* n = new Class(var);
+    cout << "infanite loop ";
+    if(var == ')'){
+      if(n->peek(head) != '('){
+	n->enqueue(front, back, n->pop(head));
+      }
+      while(head != NULL && n->peek(head) == '('){
+	n->pop(head);
+      }
+    }      
+    else if (var != '*' && var != '/' && var != '+' && var != '-' && var != '(' && var != '^'){
+    //queues nums in
+      n->enqueue(front,back, n);
+      
+    } else {
+      head = n->pushStack(n,head);
+    
+      // bool more = precedence(var, head->num);
+      //cout << more;
+    }
 
+  }
+cout << "infanite loop 32";
+  Class* current = head;
+  cout<<"Stack: " <<endl;
+  if(current != NULL){
+    do{
+      cout << current->num;
+      current = current->next;
+    }while (current != NULL);
+  }
+
+  cout<< endl<<endl<<"Queue: " <<endl;
+  current = front;
+  if(current != NULL){
+    
+    do{
+      cout << current->dequeue(front, back)->num;
+      current = current->next;
+    }while (current != NULL);
+  }
+  
+
+  cout<< "!";
+  //cout<<endl<<"-bash: syntax error near unexpected token `5-6'";
+  return 0;
+}
+
+
+  /*
 
   for (int i = 0; i < fulleqn.size(); i++){
     char var=fulleqn[i];
@@ -50,9 +102,6 @@ int main(){
   
   */
 
-  cout<< "!";
-  return 0;
-}
 
 bool priority(char current, char previous){
   int curprec;
