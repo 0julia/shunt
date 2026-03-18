@@ -3,7 +3,7 @@
 #include "Class.h"
 using namespace std;
 
-bool precedence(char current, char previous);//will need to change to get peek in
+bool priority(char current, char previous);//will need to change to get peek in
 
 int main(){
   Class* head = NULL;//top of stack
@@ -13,11 +13,25 @@ int main(){
   char eqn;
   cout << "Wellcome. Pleese insurt A equasion: ";
   cin >> fulleqn;
-  //Class* n = new Class(fulleqn[0]);
-  //n->push(n);
 
-  //add everything to stack
-  ///*
+
+  for (int i = 0; i < fulleqn.size(); i++){
+    char var=fulleqn[i];
+    Class* n = new Class(var);
+    head = n->pushStack(n,head);
+    cout << n->pop(n)<<" ";
+    //head = n->enqueue(n, head);
+  }
+
+  Class* current = head;
+  do{
+    cout << current->num;
+    current = current->next;
+  }while (current != NULL);
+  
+
+  //add everything to queue
+  /*
 
   for (int i = 0; i < fulleqn.size(); i++){
     char var=fulleqn[i];
@@ -30,17 +44,17 @@ int main(){
   
   Class* current = front;
   do{
-    cout << current->num;
+    cout << current->dequeue(front, back)->num;
     current = current->next;
   }while (current != NULL);
   
-
+  */
 
   cout<< "!";
   return 0;
 }
 
-bool precedence(char current, char previous){
+bool priority(char current, char previous){
   int curprec;
   if (current == '+' || current == '-'){
     curprec = 0;

@@ -15,11 +15,11 @@ public:
   
   //stack
   Class* pushStack(Class* n, Class* head);
-  void pop(Class* head);
+  Class* pop(Class* head);
   char peek(Class* head);
   //queue
   void enqueue(Class*& frontStack, Class*& backStack, Class* n);
-  void dequeue(Class*& frontStack, Class*& backStack);
+  Class* dequeue(Class*& frontStack, Class*& backStack);
   char front();//?
 };
 

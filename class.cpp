@@ -20,15 +20,22 @@ Class* Class::pushStack(Class* n, Class* head){
   return head;
 }
 
-//void Class::print(Class*n){}
-
-void pop(Class* head){
+//returns the node for future movment
+Class* Class::pop(Class* head){
+  if (head == NULL){
+    return NULL;
+  }
+  Class* temp = head;
+  head = head->next;
+  return temp;
 }
 
-char peek(Class* head){
-  return '0';
+char Class::peek(Class* head){
+  return head->num;
 }
 
+
+//add smth to queue
 void Class::enqueue(Class*& frontStack, Class*& backStack, Class* n){
   n->next = NULL;
   if (backStack == NULL){
@@ -41,6 +48,17 @@ void Class::enqueue(Class*& frontStack, Class*& backStack, Class* n){
   }
 }
 
-void dequeue(Class*& frontStack, Class*& backStack){
+//returns the thinger u want to get (returns entire class)
+Class* Class::dequeue(Class*& frontStack, Class*& backStack){
+  if (frontStack == NULL){//if thiers nothing, say so
+    return NULL;
+  }
+  Class* temp = frontStack;
+  frontStack = frontStack->next;
+  //get rid of end if theres no front
+  if(frontStack == NULL){
+    backStack=NULL;
+  }
+  return temp;
 }
 
