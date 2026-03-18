@@ -22,7 +22,7 @@ Class* Class::pushStack(Class* n, Class* head){
 }
 
 //returns the node for future movment
-Class* Class::pop(Class* head){
+Class* Class::pop(Class*& head){
   if (head == NULL){
     return NULL;
   }

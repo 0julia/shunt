@@ -3,7 +3,8 @@
 #include "Class.h"
 using namespace std;
 
-bool priority(char current, char previous);//will need to change to get peek in
+int priority(char current, char previous);//will need to change to get peek in
+void movein(Class*& n);
 
 int main(){
   Class* head = NULL;//top of stack
@@ -17,13 +18,26 @@ int main(){
   for (int i = 0; i < fulleqn.size(); i++){
     char var=fulleqn[i];
     Class* n = new Class(var);
-    cout << "infanite loop ";
+    cout << "eqn loop: " << var <<endl;
     if(var == ')'){
-      if(n->peek(head) != '('){
-	n->enqueue(front, back, n->pop(head));
+      while(head != NULL && n->peek(head) != '('){
+	Class* temp = n->pop(head);
+	n->enqueue(front, back, temp);
+	//delete temp;
+	cout<< "ew: " << n->num << endl;
       }
-      while(head != NULL && n->peek(head) == '('){
-	n->pop(head);
+
+      if(head != NULL){
+	if(n->peek(head) == '('){
+	  
+	  cout<< "yay" << endl;
+	  /*
+	    if(n->peek(head) != '('){
+	    n->enqueue(front, back, n->pop(head));
+	    }
+	  */
+	  delete n->pop(head);
+	}
       }
     }      
     else if (var != '*' && var != '/' && var != '+' && var != '-' && var != '(' && var != '^'){
@@ -38,7 +52,7 @@ int main(){
     }
 
   }
-cout << "infanite loop 32";
+  //cout << "infanite loop 32";
   Class* current = head;
   cout<<"Stack: " <<endl;
   if(current != NULL){
@@ -64,6 +78,10 @@ cout << "infanite loop 32";
   return 0;
 }
 
+
+void movein(Class*& n){
+
+}
 
   /*
 
@@ -103,15 +121,15 @@ cout << "infanite loop 32";
   */
 
 
-bool priority(char current, char previous){
+int priority(char current, char previous){
   int curprec;
   if (current == '+' || current == '-'){
     curprec = 0;
-    return false;
+    return 0;
   }else if(current == '*' || current == '/'){
-    return true;
+    return 1;
   }
-  return false;
+  return 2;
 }
   
     //queues everything in

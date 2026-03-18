@@ -15,7 +15,7 @@ public:
   
   //stack
   Class* pushStack(Class* n, Class* head);
-  Class* pop(Class* head);
+  Class* pop(Class*& head);
   char peek(Class* head);
   //queue
   void enqueue(Class*& frontStack, Class*& backStack, Class* n);
