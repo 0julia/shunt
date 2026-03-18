@@ -7,19 +7,19 @@ class Class{
 public:
   Class(char c);
   ~Class();
-  Class* head;
+  //Class* head;
   char num;//the eqn thing ur on rn
   Class* next;
-  Class* left;
-  Class* right;
+  Class* frontStack;
+  Class* backStack;
   
   //stack
-  Class* push(Class* n, Class* head);
-  void pop();
-  char peek();
+  Class* pushStack(Class* n, Class* head);
+  void pop(Class* head);
+  char peek(Class* head);
   //queue
-  void enqueue();
-  void dequeue();
+  void enqueue(Class*& frontStack, Class*& backStack, Class* n);
+  void dequeue(Class*& frontStack, Class*& backStack);
   char front();//?
 };
 

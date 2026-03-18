@@ -7,24 +7,30 @@ bool precedence(char current, char previous);//will need to change to get peek i
 
 int main(){
   Class* head = NULL;//top of stack
-  Class* lefty = NULL; // front of queue (add things to front and they become the back)
-  Class* righty = NULL; // qeueue dunno if i need this yet
+  Class* front = NULL; // front of queue (add things to front and they become the back)
+  Class* back = NULL; // qeueue dunno if i need this yet
   string fulleqn;
   char eqn;
   cout << "Wellcome. Pleese insurt A equasion: ";
   cin >> fulleqn;
   //Class* n = new Class(fulleqn[0]);
   //n->push(n);
+
+  //add everything to stack
+  ///*
+
   for (int i = 0; i < fulleqn.size(); i++){
     char var=fulleqn[i];
     Class* n = new Class(var);
-    head = n->push(n, head);
+    n->enqueue(front,back, n);
+    //head = n->enqueue(n, head);
   }
+  
 
   
-  Class* current = head;
+  Class* current = front;
   do{
-    cout << current->num << " ";
+    cout << current->num;
     current = current->next;
   }while (current != NULL);
   
