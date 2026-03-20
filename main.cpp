@@ -1,12 +1,12 @@
 #include <iostream>
 #include <cstring>// dunno
-#include "Class.h"
+#include "class.h"
 using namespace std;
 
 int priority(char current, char previous);//will need to change to get peek in
 void movein(Class*& n);
 
-int main(){
+int main(){ 
   Class* head = NULL;//top of stack
   Class* front = NULL; // front of queue (add things to front and they become the back)
   Class* back = NULL; // qeueue dunno if i need this yet

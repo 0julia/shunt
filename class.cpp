@@ -1,5 +1,5 @@
 # include <iostream>
-# include "Class.h"
+# include "class.h"
 using namespace std;
 
 Class::Class(char c) {
