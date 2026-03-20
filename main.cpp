@@ -21,32 +21,29 @@ int main(){
     cout << "eqn loop: " << var <<endl;
     if(var == ')'){
       while(head != NULL && n->peek(head) != '('){
-	Class* temp = n->pop(head);
-	n->enqueue(front, back, temp);
-	//delete temp;
-	cout<< "ew: " << n->num << endl;
+	      Class* temp = n->pop(head);
+	      n->enqueue(front, back, temp);
+	      //delete temp;
+	      cout<< "ew: " << n->num << endl;
       }
-
       if(head != NULL){
-	if(n->peek(head) == '('){
-	  
-	  cout<< "yay" << endl;
-	  /*
-	    if(n->peek(head) != '('){
-	    n->enqueue(front, back, n->pop(head));
-	    }
-	  */
-	  delete n->pop(head);
-	}
+        if(n->peek(head) == '('){
+          cout<< "yay" << endl;
+          /*
+            if(n->peek(head) != '('){
+            n->enqueue(front, back, n->pop(head));
+            }
+          */
+          delete n->pop(head);
+        }
       }
-    }      
+    }
     else if (var != '*' && var != '/' && var != '+' && var != '-' && var != '(' && var != '^'){
-    //queues nums in
+      //queues nums in
       n->enqueue(front,back, n);
-      
-    } else {
-      head = n->pushStack(n,head);
-    
+    } 
+    else {
+      head = n->pushStack(n,head);  
       // bool more = precedence(var, head->num);
       //cout << more;
     }
@@ -54,7 +51,7 @@ int main(){
   }
   //cout << "infanite loop 32";
   Class* current = head;
-  cout<<"Stack: " <<endl;
+  
   if(current != NULL){
     do{
       cout << current->num;
@@ -62,7 +59,7 @@ int main(){
     }while (current != NULL);
   }
 
-  cout<< endl<<endl<<"Queue: " <<endl;
+  cout<<endl<<"Queue: " <<endl;
   current = front;
   if(current != NULL){
     
@@ -81,6 +78,17 @@ int main(){
 
 void movein(Class*& n){
 
+}
+
+int priority(char current, char previous){
+  int curprec;
+  if (current == '+' || current == '-'){
+    curprec = 0;
+    return 0;
+  }else if(current == '*' || current == '/'){
+    return 1;
+  }
+  return 2;
 }
 
   /*
@@ -121,16 +129,6 @@ void movein(Class*& n){
   */
 
 
-int priority(char current, char previous){
-  int curprec;
-  if (current == '+' || current == '-'){
-    curprec = 0;
-    return 0;
-  }else if(current == '*' || current == '/'){
-    return 1;
-  }
-  return 2;
-}
   
     //queues everything in
     /*    Class* n = new Class(var);
