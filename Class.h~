@@ -21,12 +21,6 @@ public:
   void enqueue(Class*& frontStack, Class*& backStack, Class* n);
   Class* dequeue(Class*& frontStack, Class*& backStack);
   char front();//?
-
-  //tree
-  Class* right;
-  Class* left;
-  
-
 };
 
 #endif

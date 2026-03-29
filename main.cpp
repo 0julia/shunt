@@ -12,6 +12,7 @@ int main(){
   Class* head = NULL;//top of stack
   Class* front = NULL; // front of queue (add things to front and they become the back)
   Class* back = NULL; // qeueue dunno if i need this yet
+  Class* tree = NULL;
   string fulleqn = "6 + ( 9 - 3 * 4 ) ^ 2 - 6 ^ 4 / 3";
   char eqn;
   cout << "Wellcome. Please insurt a equation: " << endl;
@@ -63,8 +64,16 @@ int main(){
   }
   
   cout<<"Queue: " <<endl;
-  Class* current = head;
-  current = front;
+  //Class* current = head;
+  //current = front;
+  /*
+Class* current = front;
+while (current != NULL){
+  cout << current->num;
+  current = current->next;
+}
+
+/*
   if(current != NULL){
     
     do{
@@ -73,11 +82,60 @@ int main(){
     }while (current != NULL);
   }
 
+*/
 
 
   
   //now turn into a bianary tree
+  Class* current = front;
+  //current = front;
+  
+  while(current != NULL){
+    char val = current->num;//set the num/op that ur working on
+    //if number set as leaf? of tree
+    if (val != '+' && val != '-' && val != '*' && val != '/' && val != '^') {
+      Class* node = new Class(val);
+      node->left = NULL;
+      node->right = NULL;
+      node->next = tree;
+      tree = node;
+      //if  opperator set as parent? of num leafs
+    } else {
+      Class* right = tree;
+      tree = tree->next;
+      Class* left = tree;
+      tree = tree->next;
+      Class* node = new Class(val);
+      node->left = left;
+      node->right = right;
+      node->next = tree;
+      tree = node;
+    }
+    //go to next node    
+    current = current->next;
+  }
 
+  //now print pre/in/post fix
+
+  string input;
+  bool valid = false;
+  cout << "good job, uv maked it this far, now how would you likd to rint the eqn? (in/pre/post): ";
+  cin >> input;
+  while(valid ==false){
+    if(input== "in"){
+      cout<< "INFIX";
+      valid = true;
+    }else if (input == "pre"){
+      cout << "prefix";
+      valid = true;
+    }else if(input == "post"){
+      cout << "postfix";
+      valid = true;
+    }else{
+      cout<< "thats not one of the options, try again ";
+      cin >> input;
+    }cout << endl;
+  }  
 
 
   
