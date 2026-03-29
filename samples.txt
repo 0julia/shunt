@@ -1,0 +1,15 @@
+In: A + B * C + D
+Pre: + + A * B C D
+Post: A B C * + D +
+
+In: (A + B) * (C + D)
+Pre: * + A B + C D
+Post: A B + C D + *
+
+In: A * B + C * D
+Pre: + * A B * C D
+Post: A B * C D * +
+
+In: A + B + C + D
+Pre: + + + A B C D
+Post: A B + C + D +

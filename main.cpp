@@ -82,7 +82,7 @@ int main(){
 }
 
 //make sure the first opperations go straight through
-
+//void movein(Class*& n){
 void movein(Class*& head, Class*& front, Class*& back, char var){
   int curprec = priority(head->num);
   int prevprec = priority(head->peek(head));
@@ -94,6 +94,43 @@ void movein(Class*& head, Class*& front, Class*& back, char var){
   }
 }
 
+  /*
+
+  for (int i = 0; i < fulleqn.size(); i++){
+    char var=fulleqn[i];
+    Class* n = new Class(var);
+    head = n->pushStack(n,head);
+    cout << n->pop(n)<<" ";
+    //head = n->enqueue(n, head);
+  }
+
+  Class* current = head;
+  do{
+    cout << current->num;
+    current = current->next;
+  }while (current != NULL);
+  
+
+  //add everything to queue
+  /*
+
+  for (int i = 0; i < fulleqn.size(); i++){
+    char var=fulleqn[i];
+    Class* n = new Class(var);
+    n->enqueue(front,back, n);
+    //head = n->enqueue(n, head);
+  }
+  
+
+  
+  Class* current = front;
+  do{
+    cout << current->dequeue(front, back)->num;
+    current = current->next;
+  }while (current != NULL);
+  
+  */
+
 
 int priority(char current){
   if (current == '+' || current == '-'){
@@ -103,4 +140,23 @@ int priority(char current){
   }
   return 2; // ^ gets high prec
 }
+  
+    //queues everything in
+    /*    Class* n = new Class(var);
+    n->left = lefty;
+    n->right = righty;
+    head = n;
+    /
+    if (var != '*' && var != '/' && var != '+' && var != '-' && var != '(' && var != ')' && var != '^'){
+    //stacks everything in
+    /*Class* n = new Class(var);
+    n->push(n);
+    /*n->next = head;
+    head = n;
+    /
+    } else {
+      // bool more = precedence(var, head->num);
+      //cout << more;
+    }
+    //    */
   
