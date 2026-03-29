@@ -4,7 +4,9 @@
 using namespace std;
 
 int priority(char current);//will need to change to get peek in
-void movein(Class*& head, Class*& front, Class*& back, char var);
+void movein(Class*& n, Class*& head, Class*& front, Class*& back);
+//void movein(Class*& head, Class*& front, Class*& back, char var);
+char peek(Class* head);
 
 int main(){
   Class* head = NULL;//top of stack
@@ -14,58 +16,61 @@ int main(){
   char eqn;
   cout << "Wellcome. Please insurt a equation: " << endl<<endl;
   //cin >> fulleqn;
-  cout<< fulleqn<<endl;
+
+
+  //infix to postfix
   for (int i = 0; i < fulleqn.size(); i++){
     char var=fulleqn[i];
     Class* n = new Class(var);
-    if (head != NULL) {
-      cout << "eqn loop: " << var << ". prev: " << n->peek(head) << endl;
-    } else {
-      cout << "eqn loop: " << var << ". prev: EMPTY" << endl;
-    }
-    //   cout << "eqn loop: " << var << ". prev: " << head->peek(n) <<endl;
+    // cout << "eqn loop: " << var << " Next: " << peek(head) << endl;
 
-    if(var == ')'){//if you get the close parenthesis...
-      while(head != NULL && n->peek(head) != '('){//move stack to queue till u get to the open one
-	Class* temp = n->pop(head);
-	n->enqueue(front, back, temp);//move it to que
+    //start by getting close parenthesis!!!
+    if (var == ')') {
+      //move things in parenthesis into queue
+      while (head != NULL && peek(head) != '(') {
+	Class* temp = head->pop(head);
+	temp->enqueue(front, back, temp);
       }
-      if(head != NULL){//get rid of the open parenthesis
-	if(n->peek(head) == '('){
-	  delete n->pop(head);
-	}
+      //delete open parenthesis
+      if (head != NULL && peek(head) == '(') {
+	delete head->pop(head);
       }
-    } else if(var == '('){
-	head = n->pushStack(n,head);
-    } else if (var != '*' && var != '/' && var != '+' && var != '-' && var != '^'){
-    //queues nums in
+      delete n; // delete )
+      //      continue;
+    }
+
+    //pushes ( ritgh into stack
+    else if (var == '('){
+      head = n->pushStack(n, head);
+      //continue;
+    } else if (var != '*' && var != '/' && var != '+' && var != ')' && var != '(' && var != '-' && var != '^'){
+      //queues nums inf
       n->enqueue(front,back, n);
       
-      //}else if(head== NULL){
-      //head = n->pushStack(n,head);
-      //cout << head->num;
-    }else {
-      if(head != NULL){
-      movein(head, front, back, var);
-      head = n->pushStack(n,head);
-      cout << head;
-      }else{
-	head = n->pushStack(n,head);
-	cout << "UHGGGG IM BROKEN!!!" <<endl;}
+    }//push operators into stac/queue in order
+    else {
+      movein(n, head, front, back);
+      head = n->pushStack(n, head);
     }
+  }//end for loop
 
+  //at end put operators into que
+  while (head != NULL) {
+    Class* temp = head->pop(head);
+    temp->enqueue(front, back, temp);
   }
-  //cout << "infanite loop 32";
+  
+  //print stack adn queue
   Class* current = head;
-  cout<<endl<< endl<<fulleqn<<endl<<endl<<"Stack: " <<endl;
+  cout<< endl << fulleqn << endl<<"Stack: " <<endl;
   if(current != NULL){
     do{
       cout << current->num;
       current = current->next;
     }while (current != NULL);
   }
-
-  cout<< endl<<endl<<"Queue: " <<endl;
+  
+  cout<<endl<<"Queue: " <<endl;
   current = front;
   if(current != NULL){
     
@@ -75,88 +80,32 @@ int main(){
     }while (current != NULL);
   }
   
-
-  cout<< "!";
+  //now turn into a bianary tree?? 
+  
   //cout<<endl<<"-bash: syntax error near unexpected token `5-6'";
   return 0;
 }
 
-//make sure the first opperations go straight through
-//void movein(Class*& n){
-void movein(Class*& head, Class*& front, Class*& back, char var){
-  int curprec = priority(head->num);
-  int prevprec = priority(head->peek(head));
-  
-  while (head != NULL && (head->num == '+' || head->num == '-' || head->num == '*' || head->num == '/' || head->num == '^') && priority(head->num) >= priority(var)) {
 
-    Class* temp = head->pop(head);
-    head->enqueue(front, back, temp);
+void movein(Class*& n, Class*& head, Class*& front, Class*& back){
+  while (head != NULL && peek(head) !='(' && priority(n->num) <= priority(peek(head))) {
+    Class* temp = n->pop(head);//delete from stack
+    n->enqueue(front, back, temp);//enqueue operator
   }
 }
-
-  /*
-
-  for (int i = 0; i < fulleqn.size(); i++){
-    char var=fulleqn[i];
-    Class* n = new Class(var);
-    head = n->pushStack(n,head);
-    cout << n->pop(n)<<" ";
-    //head = n->enqueue(n, head);
-  }
-
-  Class* current = head;
-  do{
-    cout << current->num;
-    current = current->next;
-  }while (current != NULL);
-  
-
-  //add everything to queue
-  /*
-
-  for (int i = 0; i < fulleqn.size(); i++){
-    char var=fulleqn[i];
-    Class* n = new Class(var);
-    n->enqueue(front,back, n);
-    //head = n->enqueue(n, head);
-  }
-  
-
-  
-  Class* current = front;
-  do{
-    cout << current->dequeue(front, back)->num;
-    current = current->next;
-  }while (current != NULL);
-  
-  */
-
 
 int priority(char current){
   if (current == '+' || current == '-'){
-    return 0;//+ and - get lowest precidence
+    return 1;
   }else if(current == '*' || current == '/'){
-    return 1;//* and / get mid precedence 
+    return 2;
   }
-  return 2; // ^ gets high prec
+  return 3;
 }
-  
-    //queues everything in
-    /*    Class* n = new Class(var);
-    n->left = lefty;
-    n->right = righty;
-    head = n;
-    /
-    if (var != '*' && var != '/' && var != '+' && var != '-' && var != '(' && var != ')' && var != '^'){
-    //stacks everything in
-    /*Class* n = new Class(var);
-    n->push(n);
-    /*n->next = head;
-    head = n;
-    /
-    } else {
-      // bool more = precedence(var, head->num);
-      //cout << more;
-    }
-    //    */
-  
+
+char peek(Class* head){
+  if (head != NULL){
+    return head->num;
+  }
+  return '\0';
+}
