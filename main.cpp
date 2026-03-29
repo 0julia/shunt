@@ -12,9 +12,9 @@ int main(){
   Class* head = NULL;//top of stack
   Class* front = NULL; // front of queue (add things to front and they become the back)
   Class* back = NULL; // qeueue dunno if i need this yet
-  string fulleqn = "6+(9-3*4)^2-6^4/3";
+  string fulleqn = "6 + ( 9 - 3 * 4 ) ^ 2 - 6 ^ 4 / 3";
   char eqn;
-  cout << "Wellcome. Please insurt a equation: " << endl<<endl;
+  cout << "Wellcome. Please insurt a equation: " << endl;
   //cin >> fulleqn;
 
 
@@ -24,8 +24,10 @@ int main(){
     Class* n = new Class(var);
     // cout << "eqn loop: " << var << " Next: " << peek(head) << endl;
 
-    //start by getting close parenthesis!!!
-    if (var == ')') {
+    //start by getting close parenthesis!!! (and ignoreing spaces)
+    if(var == ' '){
+      continue;
+    }else if (var == ')') {
       //move things in parenthesis into queue
       while (head != NULL && peek(head) != '(') {
 	Class* temp = head->pop(head);
@@ -60,17 +62,8 @@ int main(){
     temp->enqueue(front, back, temp);
   }
   
-  //print stack adn queue
+  cout<<"Queue: " <<endl;
   Class* current = head;
-  cout<< endl << fulleqn << endl<<"Stack: " <<endl;
-  if(current != NULL){
-    do{
-      cout << current->num;
-      current = current->next;
-    }while (current != NULL);
-  }
-  
-  cout<<endl<<"Queue: " <<endl;
   current = front;
   if(current != NULL){
     
@@ -79,8 +72,14 @@ int main(){
       current = current->next;
     }while (current != NULL);
   }
+
+
+
   
-  //now turn into a bianary tree?? 
+  //now turn into a bianary tree
+
+
+
   
   //cout<<endl<<"-bash: syntax error near unexpected token `5-6'";
   return 0;
