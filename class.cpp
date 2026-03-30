@@ -31,15 +31,6 @@ Class* Class::pop(Class*& head){
   return temp;
 }
 
-/*
-//jsut look at the top of stack char
-char Class::peek(Class* head){
-  if (head !=NULL){
-    return '\0';
-  }
-  return head->num;
-}
-*/ //move to main
 
 //add smth to queue
 void Class::enqueue(Class*& frontStack, Class*& backStack, Class* n){

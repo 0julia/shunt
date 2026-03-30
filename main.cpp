@@ -13,7 +13,7 @@ int main(){
   Class* front = NULL; // front of queue (add things to front and they become the back)
   Class* back = NULL; // qeueue dunno if i need this yet
   Class* tree = NULL;
-  string fulleqn = "6 + ( 9 - 3 * 4 ) ^ 2 - 6 ^ 4 / 3";
+  string fulleqn = "6+(9-3*4)^2-6^4/3";
   char eqn;
   cout << "Wellcome. Please insurt a equation: " << endl;
   //cin >> fulleqn;
@@ -62,33 +62,22 @@ int main(){
     Class* temp = head->pop(head);
     temp->enqueue(front, back, temp);
   }
-  
-  cout<<"Queue: " <<endl;
-  //Class* current = head;
-  //current = front;
-  /*
-Class* current = front;
-while (current != NULL){
-  cout << current->num;
-  current = current->next;
-}
 
-/*
-  if(current != NULL){
-    
-    do{
-      cout << current->dequeue(front, back)->num;
-      current = current->next;
-    }while (current != NULL);
+
+  //print postfix/queue & infix
+  cout << "Infix: " << fulleqn << endl;
+  cout<<"Postfix: ";
+  Class* current = front;
+  while (current != NULL){
+    cout << current->num;
+    current = current->next;
   }
 
-*/
 
 
   
   //now turn into a bianary tree
-  Class* current = front;
-  //current = front;
+  current = front;
   
   while(current != NULL){
     char val = current->num;//set the num/op that ur working on
@@ -115,27 +104,50 @@ while (current != NULL){
     current = current->next;
   }
 
+
+
+  
+
   //now print pre/in/post fix
 
   string input;
+  
   bool valid = false;
-  cout << "good job, uv maked it this far, now how would you likd to rint the eqn? (in/pre/post): ";
+  cout<<endl << "how would you likd to rint the eqn? (in/pre/post): ";
   cin >> input;
   while(valid ==false){
     if(input== "in"){
-      cout<< "INFIX";
+      /* make recursive
+      cout<< "INFIX" << endl;
+      cout << "root " << tree->num << " left child " << tree->left->num;
+      bool done = false;//printed everything?
+      current = front;
+
+      while(done == false){
+	char l=current->left->num;//left
+	char r=current->right->num;//right
+	if (l != '+' && l != '-' && l != '*' && l != '/' && l != '^'){
+	  cout << "("<<l<<current->num;
+	  if (r != '+' && r != '-' && r != '*' && r != '/' && r != '^')
+	    cout << r << ")";
+	}
+	}
+	}
+      }
       valid = true;
+      */
     }else if (input == "pre"){
-      cout << "prefix";
+      cout << "PREFIX" << endl;
       valid = true;
     }else if(input == "post"){
-      cout << "postfix";
+      cout << "POSTFIX" << endl;
       valid = true;
     }else{
       cout<< "thats not one of the options, try again ";
       cin >> input;
     }cout << endl;
-  }  
+  }
+
 
 
   
