@@ -16,17 +16,16 @@ int main(){
   Class* front = NULL; // front of queue (add things to front and they become the back)
   Class* back = NULL; // qeueue dunno if i need this yet
   Class* tree = NULL;
-  string fulleqn = "6+(9-3*4)^2-6^4/3";
+  string fulleqn;
   char eqn;
-  cout << "Wellcome. Please insurt a equation: " << endl;
-  //cin >> fulleqn;
+  cout << "Wellcome. Please insurt a equation: ";
+  getline(cin, fulleqn);
 
 
   //infix to postfix
   for (int i = 0; i < fulleqn.size(); i++){
     char var=fulleqn[i];
     Class* n = new Class(var);
-    // cout << "eqn loop: " << var << " Next: " << peek(head) << endl;
 
     //start by getting close parenthesis!!! (and ignoreing spaces)
     if(var == ' '){
@@ -67,20 +66,8 @@ int main(){
   }
 
 
-  //print postfix/queue & infix
-  cout << "Infix: " << fulleqn << endl;
-  cout<<"Postfix: ";
   Class* current = front;
-  while (current != NULL){
-    cout << current->num;
-    current = current->next;
-  }
-
-
-
-  
   //now turn into a bianary tree
-  current = front;
   
   while(current != NULL){
     char val = current->num;//set the num/op that ur working on
@@ -112,32 +99,35 @@ int main(){
   
 
   //now print pre/in/post fix
-
-  string input;
-  
   bool valid = false;
+  string inputtype;
+  cin.clear();
+  //  cin.ignore(1000,'\n');
   cout<<endl << "how would you likd to print the eqn? (in/pre/post): ";
-  cin >> input;
-
-  if(input== "in"){
-    cout << "INFIX: ";
-    inrecurcive(tree);
-  }else if (input == "pre"){
-    cout << "PREFIX: " << endl;
-    prerecurcive(tree);
-  }else if(input == "post"){
-    cout << "POSTFIX: " << endl;
+  cin >> inputtype;
+  while (valid == false){
+    if(inputtype== "in"){
+      cout << "INFIX: ";
+      inrecurcive(tree);
+      valid = true;
+    }else if (inputtype == "pre"){
+      cout << "PREFIX: " << endl;
+      prerecurcive(tree);
+      valid = true;
+    }else if(inputtype == "post"){
+      cout << "POSTFIX: " << endl;
       postrecurcive(tree);
-  }else{
-    cout<< "thats not one of the options, try again ";
-      cin >> input;
-  }cout << endl;
-
-
-
+      valid = true;
+    }else{
+      cout<< "thats not one of the options, try again ";
+      cin >> inputtype;
+    }
+  }
+  cout << endl;
+  
 
   
-  cout<<endl<<"-bash: syntax error near unexpected token `5-6'";
+  //cout<<endl<<"-bash: syntax error near unexpected token `5-6'";
   return 0;
 }
 
