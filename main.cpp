@@ -5,7 +5,10 @@ using namespace std;
 
 int priority(char current);//will need to change to get peek in
 void movein(Class*& n, Class*& head, Class*& front, Class*& back);
-//void movein(Class*& head, Class*& front, Class*& back, char var);
+void prerecurcive(Class* current);
+void inrecurcive(Class* current);
+void postrecurcive(Class* current);
+
 char peek(Class* head);
 
 int main(){
@@ -113,47 +116,74 @@ int main(){
   string input;
   
   bool valid = false;
-  cout<<endl << "how would you likd to rint the eqn? (in/pre/post): ";
+  cout<<endl << "how would you likd to print the eqn? (in/pre/post): ";
   cin >> input;
-  while(valid ==false){
-    if(input== "in"){
-      /* make recursive
-      cout<< "INFIX" << endl;
-      cout << "root " << tree->num << " left child " << tree->left->num;
-      bool done = false;//printed everything?
-      current = front;
 
-      while(done == false){
-	char l=current->left->num;//left
-	char r=current->right->num;//right
-	if (l != '+' && l != '-' && l != '*' && l != '/' && l != '^'){
-	  cout << "("<<l<<current->num;
-	  if (r != '+' && r != '-' && r != '*' && r != '/' && r != '^')
-	    cout << r << ")";
-	}
-	}
-	}
-      }
-      valid = true;
-      */
-    }else if (input == "pre"){
-      cout << "PREFIX" << endl;
-      valid = true;
-    }else if(input == "post"){
-      cout << "POSTFIX" << endl;
-      valid = true;
-    }else{
-      cout<< "thats not one of the options, try again ";
+  if(input== "in"){
+    cout << "INFIX: ";
+    inrecurcive(tree);
+  }else if (input == "pre"){
+    cout << "PREFIX: " << endl;
+    prerecurcive(tree);
+  }else if(input == "post"){
+    cout << "POSTFIX: " << endl;
+      postrecurcive(tree);
+  }else{
+    cout<< "thats not one of the options, try again ";
       cin >> input;
-    }cout << endl;
-  }
+  }cout << endl;
+
 
 
 
   
-  //cout<<endl<<"-bash: syntax error near unexpected token `5-6'";
+  cout<<endl<<"-bash: syntax error near unexpected token `5-6'";
   return 0;
 }
+
+//go down follow the leftmost path and do that diagnolally
+void prerecurcive(Class* current){
+  if (current == NULL){ //dont break
+    return;
+  }
+  cout << current->num; //print
+  //RECURSIVEE!!!!
+  prerecurcive(current->left);
+  prerecurcive(current->right);
+}
+
+
+//print left, opperator, right
+void inrecurcive(Class* current){
+  if (current == NULL){ //dont break
+    return;
+  }
+  
+  //RECURSIVEE!!!!
+  if(current->left != NULL){
+    cout << "(";
+  }
+  inrecurcive(current->left);
+  cout << current->num; //print
+  inrecurcive(current->right);
+  if(current->left != NULL){
+    cout << ")";
+  }
+}
+
+//print left, right, opperator
+void postrecurcive(Class* current){
+  if (current == NULL){ //dont break
+    return;
+  }
+  
+  //RECURSIVEE!!!!
+  postrecurcive(current->left);
+  postrecurcive(current->right);
+  cout << current->num; //print
+  
+}
+
 
 
 void movein(Class*& n, Class*& head, Class*& front, Class*& back){
